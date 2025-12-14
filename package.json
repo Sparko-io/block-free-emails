@@ -1,0 +1,34 @@
+{
+  "name": "@sparko-ai/block-free-emails",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts",
+    "dev": "tsup src/index.ts --watch",
+    "lint": "eslint src/",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "better-auth": "^1.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "better-auth": "*",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
