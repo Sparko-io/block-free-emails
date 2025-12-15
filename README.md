@@ -5,7 +5,7 @@ It ships with a maintained list of common domains and gives you hooks to fully c
 
 ## Features
 - 🔒 Uses the curated `FREE_EMAIL_DOMAINS` list out of the box.
-- 🚫 Blocks by blacklist or flips to whitelist mode when you need to allow only corporate domains.
+- 🚫 Blocks via a configurable blocklist or flips to allowlist mode when you need to restrict access to corporate domains.
 - 🧩 Accepts a custom validator for advanced policies (regex, database checks, etc.).
 - ♻️ Works as a normal Better Auth plugin – simply drop it into your `betterAuth` configuration.
 
@@ -41,7 +41,7 @@ When a user enters an email belonging to one of the known free providers, an `AP
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `blockedDomains` | `string[]` | `FREE_EMAIL_DOMAINS` | Domains that should be rejected. Extend or replace the default list. |
-| `allowedDomains` | `string[]` | `[]` | Switches the plugin to whitelist mode – only these domains are accepted. |
+| `allowedDomains` | `string[]` | `[]` | Switches the plugin to allowlist mode – only these domains are accepted. |
 | `customErrorMessage` | `string` | `"Please use your corporate email address. Free email providers are not allowed."` | Message returned to the user when a domain is blocked. |
 | `blockOnSignIn` | `boolean` | `true` | Placeholder for future flows. The current implementation always runs on the magic-link sign-in route – keep this `true` for forward compatibility. |
 | `customValidator` | `(email, domain) => boolean \| Promise<boolean>` | `undefined` | Run any custom logic. Return `false` to block the request even if the domain is normally allowed. |
@@ -49,8 +49,8 @@ When a user enters an email belonging to one of the known free providers, an `AP
 The evaluation order is:
 
 1. `customValidator` (if defined)
-2. `allowedDomains` whitelist check
-3. `blockedDomains` blacklist check
+2. `allowedDomains` allowlist check
+3. `blockedDomains` blocklist check
 
 ## Helper utilities
 

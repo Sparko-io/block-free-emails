@@ -12,7 +12,7 @@ export interface BlockFreeEmailsOptions {
     blockedDomains?: string[];
 
     /**
-     * List of email domains to allow (whitelist mode)
+     * List of email domains to allow (allowlist mode)
      * If set, only these domains will be allowed
      */
     allowedDomains?: string[];
@@ -99,7 +99,7 @@ export const blockFreeEmails = (
                             return context;
                         }
 
-                        // Whitelist mode - only allow specific domains
+                        // Allowlist mode - only allow specific domains
                         if (allowedDomains.length > 0) {
                             if (!allowedDomains.includes(domain)) {
                                 throw new APIError("BAD_REQUEST", {
@@ -109,7 +109,7 @@ export const blockFreeEmails = (
                             return context;
                         }
 
-                        // Blacklist mode - block specific domains
+                        // Blocklist mode - block specific domains
                         if (blockedDomains.includes(domain)) {
                             throw new APIError("BAD_REQUEST", {
                                 message: customErrorMessage,
